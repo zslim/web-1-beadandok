@@ -1,3 +1,6 @@
+table {
+    border: 5px solid rgb(176, 131, 102);
+}
 td {
     width: 50px;
     height: 50px;
@@ -9,12 +12,15 @@ td {
 .border {
     background-color: #41210a;
     padding: 0;
+    color: #ede4df;
 }
 .black {
     background-color: #180f0a;
+    -webkit-text-stroke: 1px white;
 }
 .white {
     background-color: #ede4df;
+    -webkit-text-stroke: 1px black;
 }
 .black-piece {
     text-shadow: 1px 1px 1px 1px #fff;
@@ -22,4 +28,13 @@ td {
 .white-piece {
     color: #fff;
     text-shadow: 1px 1px 1px 1px #180f0a;
+}
+.flipped {
+    transform: rotate(180deg);
+}
+.border-on-top {
+    border-top: 5px solid rgb(176, 131, 102);
+}
+.border-on-right {
+    border-right: 5px solid rgb(176, 131, 102);
 }
