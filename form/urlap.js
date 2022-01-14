@@ -41,6 +41,13 @@ function initializeForm() {
 
 function processFormData() {
     const validationPassed = this.validateForm()
+    if (validationPassed) {
+        const fieldset = document.getElementById("urlap-fieldset")
+        fieldset.setAttribute("disabled", "")
+        const tableDiv = document.getElementById("results-table")
+        tableDiv.innerHTML = ""
+        extractData()
+    }
 }
 
 function validateTaxId() {
@@ -88,4 +95,37 @@ function validateForm() {
     const radioSelected = document.querySelector("input[name='radio-gender']:checked").value != "";
     const ready = tajValid && taxIdValid && allFieldsFilled && radioSelected;
     return ready;
+}
+
+function extractData() {
+    const form_data = {
+        "name-input": "Név",
+        "birth-date-input": "Születési dátum",
+        "taj-szam-input": "TAJ szám",
+        "tax-id-input": "Adóazonosító jel",
+        "education-select": "Legmagasabb iskolai végzettség",
+        "country-select": "Ország",
+        "region-select": "Megye",
+        "town-select": "Település",
+        "address-input": "Cím",
+        "email-input": "E-mail",
+        "phone-number-input": "Telefonszám"
+    };  // TODO: a nem nincs benne
+    const table = document.createElement("table");
+    table.classList.add("table", "result-table");
+    const tbody = document.createElement("tbody");
+    table.appendChild(tbody);
+    for (const key in form_data) {
+        const row = document.createElement("tr");
+        const cell1 = document.createElement("th")
+        cell1.innerText = form_data[key]
+        cell1.setAttribute("scope", "row")
+        const cell2 = document.createElement("td")
+        cell2.innerText = document.getElementById(key).value
+        row.appendChild(cell1)
+        row.appendChild(cell2)
+        tbody.appendChild(row)
+    }
+    const tableDiv = document.getElementById("results-table")
+    tableDiv.appendChild(table)
 }

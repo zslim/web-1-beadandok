@@ -12,7 +12,7 @@
 <body onload="initializeForm()">
     <div class="p-5 d-flex justify-content-center">
         <form id="urlap" class="needs-validation" novalidate>
-            <fieldset>
+            <fieldset id="urlap-fieldset">
                 <legend>Adatlap</legend>
                 <div class="mb-3">
                     <label for="name-input" class="form-label">Név</label>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="education-select" class="form-label">Legmagasabb iskolai végzettség</label>
-                    <select id="education-select" class="form-select not-empty" required>
+                    <select id="education-select" class="form-select not-empty" required> <!---a Kérjük válasszon is érvényes válasz-->
                         <option value="default" disabled selected>Kérjük válasszon</option>
                         <option value="altalanos">Általános iskola</option>
                         <option value="kozepiskola">Középiskolai érettségi</option>
@@ -54,14 +54,14 @@
                 </div>
                 <div class="mb-3">
                     <p>Lakhely</p>
-                    <label for="address-country" class="form-label">Ország</label>
+                    <label for="country-select" class="form-label">Ország</label>
                     <select id="country-select" class="form-select not-empty" required></select>
                     <label for="region-select" class="form-label">Megye</label>
                     <select id="region-select" class="form-select not-empty" required></select>
                     <label for="town-select" class="form-label">Település</label>
                     <select id="town-select" class="form-select not-empty" required></select>
-                    <label for="address" class="form-label">Cím</label>
-                    <input type="text" class="form-control not-empty" id="address" required>
+                    <label for="address-input" class="form-label">Cím</label>
+                    <input type="text" class="form-control not-empty" id="address-input" required>
                 </div>
                 <div class="mb-3">
                     <label for="email-input" class="form-label">E-mail</label>
@@ -72,10 +72,11 @@
                     <input type="text" class="form-control not-empty" id="phone-number-input" placeholder="+36 20 123 4567" required>
                 </div>
                 <div class="mb-3">
-                    <button type="button" class="btn btn-success" onclick="validateForm()">Küldés</button>
+                    <button type="button" class="btn btn-success" onclick="processFormData()">Küldés</button>
                 </div>
             </fieldset>
         </form>
     </div>
+    <div id="results-table" class="p-5 d-flex justify-content-center"></div>
 </body>
 </html>
