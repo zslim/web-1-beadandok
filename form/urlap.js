@@ -1,51 +1,54 @@
-function checkTaj(taj) {  // stringként kell megadni a paramétert, különben ha az első számjegy 0, el fog veszni
-    let tajArray = Array.from(taj);
-    const lastDigit = tajArray.pop();
-    let checksum = 0;
-    for (let i = 0; i < tajArray.length; i++) {
-        let multiplier;
-        if (i % 2 == 0) {  // páros indexe a páratlan (1., 3., 5., 7.) helyen álló elemeknek van
-            multiplier = 3;
-        }
-        else {
-            multiplier = 7;
-        }
-        checksum += tajArray[i] * multiplier;
-    }
-    const result = checksum % 10 == lastDigit;
-    return result;
+function getCountries() {
+    let response = new x
 }
 
-function checkTaxId(taxId, birthDate) {  // birth date format: "%Y-%m-%d"
-    let taxIdArray = Array.from(taxId.toString());
-    const checkA = taxIdArray[0] == 8;
-
-    const baseDate = new Date("1867-01-01");
-    const dayDifference = differenceInDays(baseDate, new Date(birthDate));
-    const digitsForCheckB = mergeElements(taxIdArray, 1, 5);
-    const checkB = dayDifference == digitsForCheckB;
-
-    const lastDigit = taxIdArray.pop();
-    let checksum = 0;
-    for (let i = 0; i < taxIdArray.length; i++) {
-        checksum += taxIdArray[i] * (i + 1);
-    }
-    const checkC = checksum % 11 == lastDigit;
-    return checkA && checkB && checkC;
-
+function processFormData() {
+    const validationPassed = this.validateForm()
 }
 
-function differenceInDays(date1, date2) {
-    const oneDay = 1000 * 60 * 60 * 24;  // mivel a Date objectek ezredmásodperceket tárolnak
-    const diffInMsec = Math.abs(date1 - date2);
-    const diffInDays = Math.floor(diffInMsec / oneDay);
-    return diffInDays;
+function validateTaxId() {
+    const taxIdInput = document.getElementById("tax-id-input").value
+    const birthDateInput = document.getElementById("birth-date-input").value
+    const passed = checkTaxId(taxIdInput, birthDateInput)
+    return passed
 }
 
-function mergeElements(array, firstIndex, lastIndex){  // inclusive
-    let result = "";
-    for (let index = firstIndex; index < lastIndex + 1; index++) {
-        result += array[index];
+function validateTaj() {
+    const tajInput = document.getElementById("taj-szam-input").value
+    const passed = checkTaj(tajInput)
+    return passed
+}
+
+function fieldsFilled() {
+    const fields = document.querySelectorAll(".not-empty")
+    const result = true
+    fields.forEach(field => {
+        result = result && field.value != ""
+    })
+    return result
+}
+
+function validateForm() {
+    const tajInputField = document.getElementById("taj-szam-input")
+    const tajValid = this.validateTaj()
+    if (tajValid) {
+        tajInputField.setCustomValidity("")
+    } else {
+        tajInputField.setCustomValidity("Érvénytelen TAJ szám")
     }
-    return parseInt(result);
+
+    const taxIdField = document.getElementById("tax-id-input")
+    const taxIdValid = this.validateTaxId()
+    if (taxIdValid) {
+        taxIdField.setCustomValidity("")
+    } else {
+        taxIdField.setCustomValidity("Érvénytelen adószám")
+    }
+    const form = document.getElementById("urlap")
+    form.classList.remove("needs-validation")
+    form.classList.add("was-validated")
+    const allFieldsFilled = this.fieldsFilled()
+    const radioSelected = document.querySelector("input[name='radio-gender']:checked").value != ""
+    const ready = tajValid && taxIdValid && allFieldsFilled && radioSelected
+    return ready
 }

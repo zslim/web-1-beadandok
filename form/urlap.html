@@ -11,39 +11,39 @@
 </head>
 <body>
     <div class="p-5 d-flex justify-content-center">
-        <form>
+        <form id="urlap" class="needs-validation" novalidate>
             <fieldset>
                 <legend>Adatlap</legend>
                 <div class="mb-3">
                     <label for="name-input" class="form-label">Név</label>
-                    <input type="text" class="form-control" id="name-input" placeholder="Gipsz Jakab">
+                    <input type="text" class="form-control not-empty" id="name-input" placeholder="Gipsz Jakab" required>
                 </div>
                 <div class="mb-3">
                     <label for="birth-date-input" class="form-label">Születési idő</label>
-                    <input type="date" class="form-control" id="birth-date-input">
+                    <input type="date" class="form-control not-empty" id="birth-date-input" required>
                 </div>
                 <div class="mb-3">
                     <p>Nem</p>
                     <div class="form-check">
-                        <input type="radio" class="form-check-input" id="radio-male" name="radio-gender">
+                        <input type="radio" class="form-check-input" id="radio-male" name="radio-gender" required>
                         <label for="radio-male" class="form-check-label">Férfi</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" class="form-check-input" id="radio-female" name="radio-gender">
+                        <input type="radio" class="form-check-input" id="radio-female" name="radio-gender" required>
                         <label for="radio-female" class="form-check-label">Nő</label>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="taj-szam" class="form-label">TAJ szám</label>
-                    <input type="text" id="taj-szam" class="form-control">
+                    <label for="taj-szam-input" class="form-label">TAJ szám</label>
+                    <input type="text" id="taj-szam-input" class="form-control" required>
                 </div>
                 <div class="mb-3">
-                    <label for="adoszam" class="form-label">Adóazonosító jel</label>
-                    <input type="text" class="form-control" id="adoszam">
+                    <label for="tax-id-input" class="form-label">Adóazonosító jel</label>
+                    <input type="number" class="form-control" id="tax-id-input" required>
                 </div>
                 <div class="mb-3">
                     <label for="education-select" class="form-label">Legmagasabb iskolai végzettség</label>
-                    <select id="education-select" class="form-select">
+                    <select id="education-select" class="form-select not-empty" required>
                         <option value="default" disabled selected>Kérjük válasszon</option>
                         <option value="altalanos">Általános iskola</option>
                         <option value="kozepiskola">Középiskolai érettségi</option>
@@ -55,24 +55,24 @@
                 <div class="mb-3">
                     <p>Lakhely</p>
                     <label for="address-country" class="form-label">Ország</label>
-                    <select id="country-select" class="form-select"></select>
+                    <select id="country-select" class="form-select not-empty" required></select>
                     <label for="region-select" class="form-label">Megye</label>
-                    <select id="region-select" class="form-select"></select>
+                    <select id="region-select" class="form-select not-empty" required></select>
                     <label for="town-select" class="form-label">Település</label>
-                    <select id="town-select" class="form-select"></select>
+                    <select id="town-select" class="form-select not-empty" required></select>
                     <label for="address" class="form-label">Cím</label>
-                    <input type="text" class="form-control" id="address">
+                    <input type="text" class="form-control not-empty" id="address" required>
                 </div>
                 <div class="mb-3">
                     <label for="email-input" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="email-input" placeholder="gipsz.jakab@ekke.hu">
+                    <input type="email" class="form-control not-empty" id="email-input" placeholder="gipsz.jakab@ekke.hu" required>
                 </div>
                 <div class="mb-3">
                     <label for="phone-number-input" class="form-label">Telefonszám</label>
-                    <input type="text" class="form-control" id="phone-number-input" placeholder="+36 20 123 4567">
+                    <input type="text" class="form-control not-empty" id="phone-number-input" placeholder="+36 20 123 4567" required>
                 </div>
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-success">Küldés</button>
+                    <button type="button" class="btn btn-success" onclick="validateForm()">Küldés</button>
                 </div>
             </fieldset>
         </form>
